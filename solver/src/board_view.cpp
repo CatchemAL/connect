@@ -14,15 +14,6 @@ namespace connect {
 
         void ConsoleBoardView::Display(const Board& board) {
 
-            /*
-                0 1 2 3 4 5 6
-                · · · · · · ·
-                · · · · · · ·
-                · O · · X · ·
-                X X X X O · ·
-                O O O X O · ·
-                X O O O X · ·
-            */
             std::cout << " Player1=X  Player2=O" << std::endl << std::endl;
 
             std::string grid = GridView(board);
@@ -45,8 +36,7 @@ namespace connect {
                 ss << "   ";
                 for (int j = 0; j < Board::WIDTH; j++) {
 
-                    if (i == Board::HEIGHT)
-                    {
+                    if (i == Board::HEIGHT) {
                         ss << " " << j;
                         continue;
                     }
@@ -54,15 +44,10 @@ namespace connect {
                     auto index = i + j * (Board::HEIGHT + 1);
                     auto bit_flag = one << index;
 
-                    if (board.mask & bit_flag) {
-                        if (x_posn & bit_flag)
-                            ss << " X";
-                        else
-                            ss << " O";
-                    }
-                    else {
+                    if (board.mask & bit_flag)
+                        ss << (x_posn & bit_flag) ? " X" : " O";
+                    else
                         ss << " .";
-                    }
                 }
                 ss << std::endl;
             }

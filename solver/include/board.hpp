@@ -6,6 +6,9 @@ using BitBoard = uint64_t;
 
 class Board {
 public:
+
+	static constexpr uint8_t HEIGHT = 6, WIDTH = 7;
+
 	BitBoard mask;
 	BitBoard position;
 	uint8_t num_moves;
@@ -15,5 +18,7 @@ public:
 	{
 	}
 
+	void play(BitBoard move);
+	void play_col(int col);
 	bool is_win();
 };

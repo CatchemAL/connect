@@ -19,6 +19,9 @@ public:
 class ConsoleBoardView : public BoardView {
 public:
     void Display(const Board& board) override;
+
+private:
+    std::string GridView(const Board& board);
 };
 
 class NullBoardView : public BoardView {

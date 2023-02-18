@@ -1,5 +1,8 @@
 #include "pch.h"
 
+#include <string>
+#include <sstream>
+
 #include "board_view.hpp"
 
 
@@ -14,16 +17,35 @@ void ConsoleBoardView::Display(const Board& board) {
         O O O X O · ·
         X O O O X · ·
     */
-    constexpr uint8_t HEIGHT = 6, WIDTH = 7;
+    std::cout << " Player1=X  Player2=O" << std::endl << std::endl;
 
-    BitBoard bitboard = board.mask;
-
-    for (int i = HEIGHT - 1; i >= 0; i--) {
-        for (int j = 0; j < WIDTH; j++) {
-            auto index = i + j * (HEIGHT + 1);
-            auto bit_flag = 1ull << index;
-            std::cout << ((bitboard & bit_flag) ? " X" : " .");
-        }
-        std::cout << std::endl;
-    }
+    std::string grid = GridView(board);
+    std::cout << grid << std::endl;
+    int num = 1 + (board.num_moves & 1);
+    std::cout << "Player" << num << " to move..." << std::endl;
 }
+
+std::string ConsoleBoardView::GridView(const Board& board) {
+
+    std::stringstream ss;
+
+    for (int i = Board::HEIGHT - 1; i >= 0; i--) {
+        ss << "   ";
+        for (int j = 0; j < Board::WIDTH; j++) {
+            auto index = i + j * (Board::HEIGHT + 1);
+            auto bit_flag = 1ull << index;
+
+            if (board.mask & bit_flag)
+                if ((board.num_moves & 1) ^ (board.position & bit_flag))
+                    ss << " X";
+                else
+                    ss << " O";
+            else
+                ss << " .";
+        }
+        ss << std::endl;
+    }
+
+    return ss.str();
+}
+

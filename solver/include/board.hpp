@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <vector>
 
 namespace connect {
 	namespace solver {
@@ -19,6 +20,14 @@ namespace connect {
 			Board() : Board(0, 0)
 			{
 			}
+
+
+			Board(const std::vector<uint8_t> cols) : Board(0, 0)
+			{
+				for (const int col : cols)
+					make_col_move(col);
+			}
+
 
 			Board(BitBoard mask, BitBoard position)
 				: mask(mask), position(position)

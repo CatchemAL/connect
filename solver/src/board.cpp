@@ -12,9 +12,10 @@ namespace connect {
 		}
 
 		void Board::make_col_move(int col) {
+			constexpr BitBoard one = 1;
 			position ^= mask;
 			int offset = col * (HEIGHT + 1);
-			int col_bit = 1 << offset;
+			BitBoard col_bit = one << offset;
 			mask |= mask + col_bit;
 			++num_moves;
 		}
@@ -26,7 +27,7 @@ namespace connect {
 			
 			for (const uint8_t dir : directions) {
 				BitBoard bitmask = bitboard & (bitboard >> dir);
-				if (bitmask & (bitboard >> 2 * dir))
+				if (bitmask & (bitmask >> 2 * dir))
 					return true;
 			}
 			return false;

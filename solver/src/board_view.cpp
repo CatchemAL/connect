@@ -54,6 +54,5 @@ namespace connect {
 
             return ss.str();
         }
-
     }
 }

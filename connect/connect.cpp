@@ -5,15 +5,14 @@
 
 #include "board.hpp"
 #include "board_view.hpp"
-#include <board_view_factory.hpp>
+#include "board_view_factory.hpp"
 
 using namespace connect::solver;
 
 
 int main()
 {
-    BitBoard mask = 517'281'465'216, position = 137'977'922'432;
-    Board board(mask, position);
+    Board board{ {0, 1, 1, 2, 3, 2, 2, 3, 5, 3, 3} };
 
     BoardViewFactory factory;
     auto view = factory.Create(BoardViewType::ConsoleView);

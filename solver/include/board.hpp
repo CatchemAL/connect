@@ -36,7 +36,7 @@ namespace connect {
 
 			void make_move(BitBoard move);
 			void make_col_move(int col);
-			bool is_won();
+			bool is_won() const;
 		};
 	}
 }

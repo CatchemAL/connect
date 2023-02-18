@@ -27,27 +27,42 @@ namespace connect {
 
             std::string grid = GridView(board);
             std::cout << grid << std::endl;
-            int num = 1 + (board.num_moves & 1);
-            std::cout << "Player" << num << " to move..." << std::endl;
+            int remainder = board.num_moves & 1;
+
+            if (board.is_won())
+                std::cout << " Player" << 2 - remainder << " wins!" << std::endl;
+            else
+                std::cout << " Player" << 1 + remainder << " to move..." << std::endl;
         }
 
         std::string ConsoleBoardView::GridView(const Board& board) {
 
             std::stringstream ss;
+            constexpr BitBoard one = 1;
+            BitBoard x_posn = (board.num_moves & 1) ? board.mask ^ board.position : board.position;
 
-            for (int i = Board::HEIGHT - 1; i >= 0; i--) {
+            for (int i = Board::HEIGHT; i >= 0; i--) {
                 ss << "   ";
                 for (int j = 0; j < Board::WIDTH; j++) {
-                    auto index = i + j * (Board::HEIGHT + 1);
-                    auto bit_flag = 1ull << index;
 
-                    if (board.mask & bit_flag)
-                        if ((board.num_moves & 1) ^ (board.position & bit_flag))
+                    if (i == Board::HEIGHT)
+                    {
+                        ss << " " << j;
+                        continue;
+                    }
+
+                    auto index = i + j * (Board::HEIGHT + 1);
+                    auto bit_flag = one << index;
+
+                    if (board.mask & bit_flag) {
+                        if (x_posn & bit_flag)
                             ss << " X";
                         else
                             ss << " O";
-                    else
+                    }
+                    else {
                         ss << " .";
+                    }
                 }
                 ss << std::endl;
             }

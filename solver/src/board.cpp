@@ -20,7 +20,7 @@ namespace connect {
 			++num_moves;
 		}
 
-		bool Board::is_won() {
+		bool Board::is_won() const {
 
 			constexpr std::array<uint8_t, 4> directions = { HEIGHT, HEIGHT + 1, HEIGHT + 2, 1 };
 			
@@ -30,6 +30,7 @@ namespace connect {
 				if (bitmask & (bitmask >> 2 * dir))
 					return true;
 			}
+
 			return false;
 		}
 	}

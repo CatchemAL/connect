@@ -10,15 +10,36 @@
 using namespace connect::solver;
 
 
+int get_column() {
+    int col;
+    while (true) {
+        std::cout << "Enter a number between 0-6: ";
+        std::cin >> col;
+
+        if (col >= 0 && col <= 6) {
+            break;
+        }
+        else {
+            std::cout << "Invalid input. Please try again." << std::endl;
+        }
+    }
+    return col;
+}
+
 int main()
 {
-    Board board{ {0, 1, 1, 2, 3, 2, 2, 3, 5, 3, 3} };
+    Board board;
 
     BoardViewFactory factory;
     auto view = factory.Create(BoardViewType::ConsoleView);
-    view->Display(board);
 
-    auto is_win = board.is_won();
+    for (;;)
+    {
+        view->Display(board);
+        if (board.is_won()) break;
 
-    return 0;
+        int col = get_column();
+        board.make_col_move(col);
+    }
 }
+

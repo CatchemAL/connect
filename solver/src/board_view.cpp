@@ -45,7 +45,7 @@ namespace connect {
                     auto bit_flag = one << index;
 
                     if (board.mask & bit_flag)
-                        ss << (x_posn & bit_flag) ? " X" : " O";
+                        ss << (x_posn & bit_flag ? " X" : " O");
                     else
                         ss << " .";
                 }

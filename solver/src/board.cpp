@@ -5,13 +5,13 @@
 namespace connect {
 	namespace solver {
 
-		void Board::play(BitBoard move) {
+		void Board::make_move(BitBoard move) {
 			position ^= mask;
 			mask |= move;
 			++num_moves;
 		}
 
-		void Board::play_col(int col) {
+		void Board::make_col_move(int col) {
 			position ^= mask;
 			int offset = col * (HEIGHT + 1);
 			int col_bit = 1 << offset;

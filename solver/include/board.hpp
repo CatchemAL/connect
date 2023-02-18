@@ -14,15 +14,19 @@ namespace connect {
 
 			BitBoard mask;
 			BitBoard position;
-			uint8_t num_moves;
+			uint8_t num_moves = 0;
 
-			Board(BitBoard mask, BitBoard position)
-				: mask(mask), position(position), num_moves(0)
+			Board() : Board(0, 0)
 			{
 			}
 
-			void play(BitBoard move);
-			void play_col(int col);
+			Board(BitBoard mask, BitBoard position)
+				: mask(mask), position(position)
+			{
+			}
+
+			void make_move(BitBoard move);
+			void make_col_move(int col);
 			bool is_win();
 		};
 	}

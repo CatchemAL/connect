@@ -22,9 +22,9 @@ namespace connect {
 
 		bool Board::is_won() {
 
-			auto bitboard = position ^ mask;
-			std::array<uint8_t, 4> directions = { HEIGHT, HEIGHT + 1, HEIGHT + 2, 1 };
+			constexpr std::array<uint8_t, 4> directions = { HEIGHT, HEIGHT + 1, HEIGHT + 2, 1 };
 			
+			auto bitboard = position ^ mask;
 			for (const uint8_t dir : directions) {
 				BitBoard bitmask = bitboard & (bitboard >> dir);
 				if (bitmask & (bitmask >> 2 * dir))

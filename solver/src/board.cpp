@@ -22,7 +22,7 @@ namespace connect {
 
 		bool Board::is_won() {
 
-			auto bitboard = position;
+			auto bitboard = position ^ mask;
 			std::array<uint8_t, 4> directions = { HEIGHT, HEIGHT + 1, HEIGHT + 2, 1 };
 			
 			for (const uint8_t dir : directions) {

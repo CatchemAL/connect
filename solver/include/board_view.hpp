@@ -5,26 +5,32 @@
 
 #include "board.hpp"
 
-enum class BoardViewType {
-    NullView,
-    ConsoleView
-};
+namespace connect {
+    namespace solver {
 
-class BoardView {
-public:
-    virtual void Display(const Board& board) = 0;
-    virtual ~BoardView() = default;
-};
+        enum class BoardViewType {
+            NullView,
+            ConsoleView
+        };
 
-class ConsoleBoardView : public BoardView {
-public:
-    void Display(const Board& board) override;
+        class BoardView {
+        public:
+            virtual void Display(const Board& board) = 0;
+            virtual ~BoardView() = default;
+        };
 
-private:
-    std::string GridView(const Board& board);
-};
+        class ConsoleBoardView : public BoardView {
+        public:
+            void Display(const Board& board) override;
 
-class NullBoardView : public BoardView {
-public:
-    void Display(const Board& board) override {}
-};
+        private:
+            std::string GridView(const Board& board);
+        };
+
+        class NullBoardView : public BoardView {
+        public:
+            void Display(const Board& board) override {}
+        };
+
+    }
+}

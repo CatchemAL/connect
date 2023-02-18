@@ -2,23 +2,28 @@
 
 #include <cstdint>
 
-using BitBoard = uint64_t;
+namespace connect {
+	namespace solver {
 
-class Board {
-public:
+		using BitBoard = uint64_t;
 
-	static constexpr uint8_t HEIGHT = 6, WIDTH = 7;
+		class Board {
+		public:
 
-	BitBoard mask;
-	BitBoard position;
-	uint8_t num_moves;
+			static constexpr uint8_t HEIGHT = 6, WIDTH = 7;
 
-	Board(BitBoard mask, BitBoard position)
-		: mask(mask), position(position), num_moves(0)
-	{
+			BitBoard mask;
+			BitBoard position;
+			uint8_t num_moves;
+
+			Board(BitBoard mask, BitBoard position)
+				: mask(mask), position(position), num_moves(0)
+			{
+			}
+
+			void play(BitBoard move);
+			void play_col(int col);
+			bool is_win();
+		};
 	}
-
-	void play(BitBoard move);
-	void play_col(int col);
-	bool is_win();
-};
+}

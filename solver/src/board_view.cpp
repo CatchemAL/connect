@@ -14,14 +14,15 @@ void ConsoleBoardView::Display(const Board& board) {
         O O O X O · ·
         X O O O X · ·
     */
+    constexpr uint8_t HEIGHT = 6, WIDTH = 7;
 
     BitBoard bitboard = board.mask;
 
-    for (int i = 8 - 1; i >= 0; i--) {
-        for (int j = 0; j < 8; j++) {
-            int index = i + j * 8;
-            int bit_flag = 1ull << index;
-            std::cout << ((bitboard & bit_flag) ? "X " : ". ");
+    for (int i = HEIGHT - 1; i >= 0; i--) {
+        for (int j = 0; j < WIDTH; j++) {
+            auto index = i + j * (HEIGHT + 1);
+            auto bit_flag = 1ull << index;
+            std::cout << ((bitboard & bit_flag) ? " X" : " .");
         }
         std::cout << std::endl;
     }

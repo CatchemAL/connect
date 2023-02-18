@@ -10,7 +10,7 @@
 
 int main()
 {
-    BitBoard mask = 123, position = 456;
+    BitBoard mask = 517'281'465'216, position = 137'977'922'432;
     Board board(mask, position);
 
     BoardViewFactory factory;

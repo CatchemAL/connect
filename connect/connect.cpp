@@ -19,7 +19,7 @@ int main()
     auto view = factory.Create(BoardViewType::ConsoleView);
     view->Display(board);
 
-    auto is_win = board.is_win();
+    auto is_win = board.is_won();
 
     return 0;
 }

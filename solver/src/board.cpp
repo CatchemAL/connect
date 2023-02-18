@@ -19,20 +19,16 @@ namespace connect {
 			++num_moves;
 		}
 
-		bool Board::is_win() {
+		bool Board::is_won() {
 
 			auto bitboard = position;
-			uint8_t h1 = HEIGHT + 0, h2 = HEIGHT + 1, h3 = HEIGHT + 2, h4 = 1;
-
-			if (bitboard & (bitboard >> h1) & (bitboard >> 2 * h1) & (bitboard >> 3 * h1))
-				return true;
-			if (bitboard & (bitboard >> h2) & (bitboard >> 2 * h2) & (bitboard >> 3 * h2))
-				return true;
-			if (bitboard & (bitboard >> h3) & (bitboard >> 2 * h3) & (bitboard >> 3 * h3)) 
-				return true;
-			if (bitboard & (bitboard >> h4) & (bitboard >> 2 * h4) & (bitboard >> 3 * h4))
-				return true;
-
+			std::array<uint8_t, 4> directions = { HEIGHT, HEIGHT + 1, HEIGHT + 2, 1 };
+			
+			for (const uint8_t dir : directions) {
+				BitBoard bitmask = bitboard & (bitboard >> dir);
+				if (bitmask & (bitboard >> 2 * dir))
+					return true;
+			}
 			return false;
 		}
 	}

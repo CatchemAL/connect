@@ -43,16 +43,28 @@ namespace connect {
 
 		BitBoard Board::win_mask() const {
 
+			constexpr col_t H1 = HEIGHT + 1;
+
 			// Vertical win
 			BitBoard wm = (position << 1) & (position << 2) & (position << 3);
 
-			// Horizontals
-			wm |= (position << (HEIGHT + 1)) & (position << 2 * (HEIGHT + 1)) & (position << 3 * (HEIGHT + 1));
-			wm |= (position >> (HEIGHT + 1)) & (position >> 2 * (HEIGHT + 1)) & (position >> 3 * (HEIGHT + 1));
+			// Horizontals (_XXXO and OXXX_)
+			wm |= (position << H1) & (position << 2 * H1) & (position << 3 * H1);
+			wm |= (position >> H1) & (position >> 2 * H1) & (position >> 3 * H1);
 
-			// Diagonals
-			wm |= (position << (HEIGHT + 2)) & (position << 2 * (HEIGHT + 2)) & (position << 3 * (HEIGHT + 2));
-			wm |= (position >> HEIGHT) & (position >> 2 * HEIGHT) & (position >> 3 * HEIGHT);
+			// Horizontals (OXX_XO and OX_XXO)
+			wm |= (position << H1) & (position << 2 * H1) & (position >> H1);
+			wm |= (position >> H1) & (position >> 2 * H1) & (position << H1);
+
+			// Diagonals _/_
+			wm |= (position << (H1 + 1)) & (position << 2 * (H1 + 1)) & (position << 3 * (H1 + 1));
+			wm |= (position << (H1 + 1)) & (position << 2 * (H1 + 1)) & (position >>     (H1 + 1));
+			wm |= (position << (H1 + 1)) & (position >>     (H1 + 1)) & (position >> 2 * (H1 + 1));
+			
+			// Diagonals _\_
+			wm |= (position >> (H1 - 1)) & (position >> 2 * (H1 - 1)) & (position >> 3 * (H1 - 1));
+			wm |= (position >> (H1 - 1)) & (position >> 2 * (H1 - 1)) & (position <<     (H1 - 1));
+			wm |= (position >> (H1 - 1)) & (position <<     (H1 - 1)) & (position << 2 * (H1 - 1));
 
 			return wm & (board_mask ^ mask);
 		}

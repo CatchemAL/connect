@@ -3,7 +3,7 @@
 
 using namespace connect::solver;
 
-TEST(TestSolver, TestCreation) {
+TEST(TestSolver, Minimax) {
 
 	// Arrange
 	Solver sut;

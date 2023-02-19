@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <vector>
+#include <iostream>
 
 #include "mask_utils.hpp"
 
@@ -16,7 +17,7 @@ namespace connect {
 		class Board {
 		public:
 
-			static constexpr col_t HEIGHT = 6, WIDTH = 7;
+			static constexpr col_t HEIGHT = 6, WIDTH = 7, NUM_SLOTS = HEIGHT * WIDTH;
 
 			BitBoard mask = 0, position = 0;
 			uint8_t num_moves = 0;
@@ -26,7 +27,7 @@ namespace connect {
 			Board(const std::vector<col_t> cols)
 			{
 				for (const int col : cols)
-					make_col_move(col);
+					play_col(col);
 			}
 
 			Board(BitBoard mask, BitBoard position)
@@ -34,15 +35,17 @@ namespace connect {
 			{
 			}
 
-			bool can_make_col_mov(col_t col) const;
-			void make_move(BitBoard move);
-			void make_col_move(col_t col);
+			bool can_play_col(col_t col) const;
+			void play_move(BitBoard move);
+			void play_col(col_t col);
 			bool is_won() const;
 
 		private:
-			static constexpr int bottom_mask = MaskUtils::create_row_mask(HEIGHT + 1, WIDTH, 0);
-			static constexpr int top_mask = MaskUtils::create_row_mask(HEIGHT + 1, WIDTH, HEIGHT - 1);
-			static constexpr int padding_mask = MaskUtils::create_row_mask(HEIGHT + 1, WIDTH, HEIGHT);
+			static constexpr BitBoard bottom_mask = MaskUtils::create_row_mask(HEIGHT + 1, WIDTH, 0);
+			static constexpr BitBoard top_mask = MaskUtils::create_row_mask(HEIGHT + 1, WIDTH, HEIGHT - 1);
+			static constexpr BitBoard padding_mask = MaskUtils::create_row_mask(HEIGHT + 1, WIDTH, HEIGHT);
+
+			static constexpr Masks<HEIGHT + 1, WIDTH> row_masks2{};
 		};
 	}
 }

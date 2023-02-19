@@ -5,24 +5,23 @@
 namespace connect {
 	namespace solver {
 
+		bool Board::can_play_col(col_t col) const {
 
+			col_t offset = (col + 1) * (HEIGHT + 1) - 2;
+			auto top_col_bit = BitBoard(1) << offset;
+			return (mask & top_col_bit) == 0;
+		}
 
-		void Board::make_move(BitBoard move) {
+		void Board::play_col(col_t col) {
+
+			col_t offset = col * (HEIGHT + 1);
+			auto col_bit = BitBoard(1) << offset;
+			play_move(mask + col_bit);
+		}
+
+		void Board::play_move(BitBoard move) {
 			position ^= mask;
 			mask |= move;
-			++num_moves;
-		}
-
-		bool Board::can_make_col_mov(col_t col) const {
-			// return (mask & top_mask_col(col)) == 0;
-			return true;
-		}
-
-		void Board::make_col_move(col_t col) {
-			position ^= mask;
-			int offset = col * (HEIGHT + 1);
-			auto col_bit = BitBoard(1) << offset;
-			mask |= mask + col_bit;
 			++num_moves;
 		}
 

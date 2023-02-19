@@ -7,7 +7,7 @@ using iib = std::tuple<col_t, col_t, col_t, BitBoard>;
 
 class MaskUtilsTest : public ::testing::TestWithParam<iib> {};
 
-TEST_P(MaskUtilsTest, TestCase) {
+TEST_P(MaskUtilsTest, TestRowMaskCreation) {
 
 	// Arrange
 	const auto& [height, width, offset, expected] = GetParam();

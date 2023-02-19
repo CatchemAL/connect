@@ -39,7 +39,7 @@ int main()
         if (board.is_won()) break;
 
         int col = get_column();
-        board.make_col_move(col);
+        board.play_col(col);
     }
 }
 

@@ -44,14 +44,38 @@ TEST(TestBoard, TestCreationFromMoveVector) {
 	EXPECT_EQ(4, num_moves);
 }
 
-TEST(TestBoard, MakeMove) {
+TEST(TestBoard, CanPlayMove) {
+
+	// Arrange
+	Board sut({2,2,2,2,2,2});
+
+	// Act
+	bool can0 = sut.can_play_col(0);
+	bool can1 = sut.can_play_col(1);
+	bool can2 = sut.can_play_col(2);
+	bool can3 = sut.can_play_col(3);
+	bool can4 = sut.can_play_col(4);
+	bool can5 = sut.can_play_col(5);
+	bool can6 = sut.can_play_col(6);
+
+	// Assert
+	EXPECT_TRUE(can0);
+	EXPECT_TRUE(can1);
+	EXPECT_FALSE(can2);
+	EXPECT_TRUE(can3);
+	EXPECT_TRUE(can4);
+	EXPECT_TRUE(can5);
+	EXPECT_TRUE(can6);
+}
+
+TEST(TestBoard, PlayMove) {
 
 	// Arrange
 	Board sut;
 	BitBoard move = 0b0001000;
 
 	// Act
-	sut.make_move(move);
+	sut.play_move(move);
 	auto mask = sut.mask;
 	auto position = sut.position;
 	auto num_moves = sut.num_moves;
@@ -62,7 +86,7 @@ TEST(TestBoard, MakeMove) {
 	EXPECT_EQ(1, num_moves);
 }
 
-TEST(TestBoard, MakeMoves) {
+TEST(TestBoard, PlayMoves) {
 
 	// Arrange
 	Board sut;
@@ -75,10 +99,10 @@ TEST(TestBoard, MakeMoves) {
 	BitBoard posn  = move1 |         move3        ;
 
 	// Act
-	sut.make_move(move1);
-	sut.make_move(move2);
-	sut.make_move(move3);
-	sut.make_move(move4);
+	sut.play_move(move1);
+	sut.play_move(move2);
+	sut.play_move(move3);
+	sut.play_move(move4);
 
 	auto actual_mask = sut.mask;
 	auto actual_position = sut.position;
@@ -90,7 +114,7 @@ TEST(TestBoard, MakeMoves) {
 	EXPECT_EQ(4, num_moves);
 }
 
-TEST(TestBoard, MakeColMoves) {
+TEST(TestBoard, PlayCols) {
 
 	// Arrange
 	Board sut;
@@ -103,10 +127,10 @@ TEST(TestBoard, MakeColMoves) {
 	BitBoard posn = move1 | move3;
 
 	// Act
-	sut.make_col_move(3);
-	sut.make_col_move(3);
-	sut.make_col_move(3);
-	sut.make_col_move(4);
+	sut.play_col(3);
+	sut.play_col(3);
+	sut.play_col(3);
+	sut.play_col(4);
 
 	auto actual_mask = sut.mask;
 	auto actual_position = sut.position;

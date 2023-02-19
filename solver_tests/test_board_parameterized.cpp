@@ -7,7 +7,7 @@ using vb = std::pair<std::vector<uint8_t>, bool>;
 
 class ParameterisedBoardTest : public ::testing::TestWithParam<vb> {};
 
-TEST_P(ParameterisedBoardTest, TestCase) {
+TEST_P(ParameterisedBoardTest, TestIsWon) {
 
 	// Arrange
 	const auto& [input, expected] = GetParam();

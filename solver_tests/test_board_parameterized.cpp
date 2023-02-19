@@ -57,17 +57,23 @@ namespace connect {
 		}
 
 		INSTANTIATE_TEST_CASE_P(BoardTestSuite, WinMaskBoardTestSuite, testing::Values(
-			std::make_pair(std::vector<uint8_t>{3, 3, 4, 4, 5, 5 }, std::vector<uint8_t>{ 2 * H1, 6 * H1 }),
-			std::make_pair(std::vector<uint8_t>{3, 4, 3, 4, 3, 4   }, std::vector<uint8_t>{ 3 * H1 + 3}),
-			std::make_pair(std::vector<uint8_t>{3, 4, 3, 4, 2, 4   }, std::vector<uint8_t>{}),
-			std::make_pair(std::vector<uint8_t>{3, 4, 3, 4, 2, 4, 3}, std::vector<uint8_t>{H1 * 4 + 3}),
-			std::make_pair(std::vector<uint8_t>{3                  }, std::vector<uint8_t>{}),
-			std::make_pair(std::vector<uint8_t>{3, 3, 3, 4         }, std::vector<uint8_t>{}),
-			std::make_pair(std::vector<uint8_t>{0, 0, 1, 1, 2, 2, 3}, std::vector<uint8_t>{H1 * 3 + 1}),
-			std::make_pair(std::vector<uint8_t>{2, 3, 4, 2, 3, 4, 2, 3, 4, 2}, std::vector<uint8_t>{H1 + 3, H1 * 5 + 3}),
+			std::make_pair(std::vector<uint8_t>{3, 3, 4, 4, 5, 5   },                std::vector<uint8_t>{ 2 * H1, 6 * H1 }),
+			std::make_pair(std::vector<uint8_t>{3, 3, 4, 4, 6, 6   },                std::vector<uint8_t>{ 5 * H1 }),
+			std::make_pair(std::vector<uint8_t>{3, 3, 5, 5, 6, 6   },                std::vector<uint8_t>{ 4 * H1 }),
+			std::make_pair(std::vector<uint8_t>{3, 4, 3, 4, 3, 4   },                std::vector<uint8_t>{ 3 * H1 + 3}),
+			std::make_pair(std::vector<uint8_t>{3, 4, 3, 4, 2, 4   },                std::vector<uint8_t>{}),
+			std::make_pair(std::vector<uint8_t>{3, 4, 3, 4, 2, 4, 3},                std::vector<uint8_t>{H1 * 4 + 3}),
+			std::make_pair(std::vector<uint8_t>{3                  },                std::vector<uint8_t>{}),
+			std::make_pair(std::vector<uint8_t>{3, 3, 3, 4         },                std::vector<uint8_t>{}),
+			std::make_pair(std::vector<uint8_t>{0, 0, 1, 1, 2, 2, 3},                std::vector<uint8_t>{H1 * 3 + 1}),
+			std::make_pair(std::vector<uint8_t>{2, 3, 4, 2, 3, 4, 2, 3, 4, 2},       std::vector<uint8_t>{H1 + 3, H1 * 5 + 3}),
 			std::make_pair(std::vector<uint8_t>{2, 6, 3, 2, 4, 4, 3, 3, 6, 2, 6, 4}, std::vector<uint8_t>{H1, H1 * 5}),
 			std::make_pair(std::vector<uint8_t>{2, 2, 3, 6, 4, 4, 3, 3, 2, 6, 4, 6}, std::vector<uint8_t>{H1, H1 + 3, H1 * 5, H1 * 5 + 3}),
-			std::make_pair(std::vector<uint8_t>{2, 2, 3, 6, 4, 4, 3, 3, 2, 6, 4, 5}, std::vector<uint8_t>{H1, H1 + 3, H1 * 5 + 3})
+			std::make_pair(std::vector<uint8_t>{2, 2, 3, 6, 4, 4, 3, 3, 2, 6, 4, 5}, std::vector<uint8_t>{H1, H1 + 3, H1 * 5 + 3}),
+			std::make_pair(std::vector<uint8_t>{2, 3, 4, 4, 4, 5, 5, 5, 5, 6},       std::vector<uint8_t>{H1 * 3 + 1}),
+			std::make_pair(std::vector<uint8_t>{2, 3, 3, 5, 5, 5, 5, 6},             std::vector<uint8_t>{H1 * 4 + 2}),
+			std::make_pair(std::vector<uint8_t>{5, 4, 3, 3, 3, 2, 2, 2, 2, 1},       std::vector<uint8_t>{H1 * 4 + 1}),
+			std::make_pair(std::vector<uint8_t>{4, 3, 3, 1, 1, 1, 1, 0},             std::vector<uint8_t>{H1 * 2 + 2})
 		));
 	}
 }

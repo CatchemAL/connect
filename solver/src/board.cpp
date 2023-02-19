@@ -5,13 +5,20 @@
 namespace connect {
 	namespace solver {
 
+
+
 		void Board::make_move(BitBoard move) {
 			position ^= mask;
 			mask |= move;
 			++num_moves;
 		}
 
-		void Board::make_col_move(int col) {
+		bool Board::can_make_col_mov(col_t col) const {
+			// return (mask & top_mask_col(col)) == 0;
+			return true;
+		}
+
+		void Board::make_col_move(col_t col) {
 			position ^= mask;
 			int offset = col * (HEIGHT + 1);
 			auto col_bit = BitBoard(1) << offset;
@@ -32,6 +39,11 @@ namespace connect {
 
 			return false;
 		}
+
+		//   // return a bitmask containg a single 1 corresponding to the top cel of a given column
+		//   static constexpr position_t top_mask_col(int col) {
+		//   	return UINT64_C(1) << ((HEIGHT - 1) + col * (HEIGHT + 1));
+		//   }
 	}
 }
 

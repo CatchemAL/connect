@@ -168,6 +168,8 @@
     <ClInclude Include="include\board_view_factory.hpp" />
     <ClInclude Include="include\framework.h" />
     <ClInclude Include="include\pch.h" />
+    <ClInclude Include="include\mask_utils.hpp" />
+    <ClInclude Include="solver.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\board_view.cpp" />

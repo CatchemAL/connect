@@ -47,7 +47,7 @@ namespace connect {
                     if (board.mask & bit_flag)
                         ss << (x_posn & bit_flag ? " X" : " O");
                     else
-                        ss << " .";
+                        ss << " _";
                 }
                 ss << std::endl;
             }

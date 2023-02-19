@@ -55,7 +55,7 @@ namespace connect {
 			wm |= (position << (HEIGHT + 2)) & (position << 2 * (HEIGHT + 2)) & (position << 3 * (HEIGHT + 2));
 			wm |= (position >> HEIGHT) & (position >> 2 * HEIGHT) & (position >> 3 * HEIGHT);
 
-			return wm & board_mask;
+			return wm & (board_mask ^ mask);
 		}
 	}
 }

@@ -41,8 +41,6 @@ namespace connect {
 			return false;
 		}
 
-		// possible_moves_mask
-
 		BitBoard Board::win_mask() const {
 
 			// Vertical win
@@ -60,7 +58,7 @@ namespace connect {
 		}
 
 		BitBoard Board::possible_moves_mask() const {
-			return (position + bottom_mask) & board_mask;
+			return (mask + bottom_mask) & board_mask;
 		}
 	}
 }

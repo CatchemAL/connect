@@ -7,13 +7,20 @@ TEST(TestSolver, Minimax) {
 
 	// Arrange
 	Solver sut;
-	Board board({ 3,3,4,4 });
+
+	std::string moves_str = "37313333717124171162542";
+	std::vector<col_t> moves;
+	for (const char move : moves_str)
+		moves.push_back(move - '1');
+
+	int expected = 3;
+	Board board(moves);
 
 	// Act
-	auto score = sut.minimax(board);
+	auto actual = sut.minimax(board);
 
 	// Assert
-	EXPECT_EQ(score, 17);
+	EXPECT_EQ(expected, actual);
 }
 
 

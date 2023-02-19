@@ -61,6 +61,7 @@
     </ClCompile>
     <ClCompile Include="test_board_parameterized.cpp" />
     <ClCompile Include="test_mask_utils.cpp" />
+    <ClCompile Include="test_solver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\solver\solver.vcxproj">

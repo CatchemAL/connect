@@ -6,14 +6,12 @@ namespace connect {
 	namespace solver {
 
 		bool Board::can_play_col(col_t col) const {
-
 			col_t offset = (col + 1) * (HEIGHT + 1) - 2;
 			auto top_col_bit = BitBoard(1) << offset;
 			return (mask & top_col_bit) == 0;
 		}
 
 		void Board::play_col(col_t col) {
-
 			col_t offset = col * (HEIGHT + 1);
 			auto col_bit = BitBoard(1) << offset;
 			play_move(mask + col_bit);
@@ -23,6 +21,10 @@ namespace connect {
 			position ^= mask;
 			mask |= move;
 			++num_moves;
+		}
+
+		bool Board::is_winning_move(col_t col) const {
+			return true;
 		}
 
 		bool Board::is_won() const {

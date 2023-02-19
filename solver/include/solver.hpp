@@ -14,10 +14,15 @@ namespace connect {
 				if (board.num_moves == Board::NUM_SLOTS) 
 					return 0;
 
-				if (board.can_play_col(1))
+				for (col_t col = 0; col < Board::WIDTH; col++)
 				{
-
+					if (board.can_play_col(col) && board.is_winning_move(col))
+					{
+						return (Board::NUM_SLOTS - board.num_moves + 1) / 2;
+					}
 				}
+				
+
 
 				return 42;
 			}

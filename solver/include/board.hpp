@@ -36,14 +36,16 @@ namespace connect {
 			}
 
 			bool can_play_col(col_t col) const;
-			void play_move(BitBoard move);
 			void play_col(col_t col);
+			void play_move(BitBoard move);
+			bool is_winning_move(col_t col) const;
 			bool is_won() const;
 
 		private:
 			static constexpr BitBoard bottom_mask = MaskUtils::create_row_mask(HEIGHT + 1, WIDTH, 0);
 			static constexpr BitBoard top_mask = MaskUtils::create_row_mask(HEIGHT + 1, WIDTH, HEIGHT - 1);
 			static constexpr BitBoard padding_mask = MaskUtils::create_row_mask(HEIGHT + 1, WIDTH, HEIGHT);
+			static constexpr BitBoard board_mask = bottom_mask * ((BitBoard(1) << HEIGHT) - 1);
 
 			static constexpr Masks<HEIGHT + 1, WIDTH> row_masks2{};
 		};

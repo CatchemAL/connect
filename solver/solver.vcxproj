@@ -170,7 +170,6 @@
     <ClInclude Include="include\pch.h" />
     <ClInclude Include="include\mask_utils.hpp" />
     <ClInclude Include="include\solver.hpp" />
-    <ClInclude Include="solver.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\board_view.cpp" />

@@ -30,9 +30,6 @@
     <ClInclude Include="include\board_view_factory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="solver.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\mask_utils.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

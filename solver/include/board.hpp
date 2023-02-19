@@ -16,7 +16,7 @@ namespace connect {
 		class Board {
 		public:
 
-			static constexpr col_t HEIGHT = 6, WIDTH = 7, NUM_SLOTS = HEIGHT * WIDTH;
+			static constexpr col_t HEIGHT = 6, WIDTH = 7;
 
 			BitBoard mask = 0, position = 0;
 			uint8_t num_moves = 0;
@@ -29,7 +29,6 @@ namespace connect {
 					make_col_move(col);
 			}
 
-
 			Board(BitBoard mask, BitBoard position)
 				: mask(mask), position(position)
 			{
@@ -41,8 +40,6 @@ namespace connect {
 			bool is_won() const;
 
 		private:
-
-
 			static constexpr int bottom_mask = MaskUtils::create_row_mask(HEIGHT + 1, WIDTH, 0);
 			static constexpr int top_mask = MaskUtils::create_row_mask(HEIGHT + 1, WIDTH, HEIGHT - 1);
 			static constexpr int padding_mask = MaskUtils::create_row_mask(HEIGHT + 1, WIDTH, HEIGHT);

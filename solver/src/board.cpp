@@ -41,6 +41,7 @@ namespace connect {
 			return false;
 		}
 
+		// possible_moves_mask
 
 		BitBoard Board::win_mask() const {
 
@@ -56,6 +57,10 @@ namespace connect {
 			wm |= (position >> HEIGHT) & (position >> 2 * HEIGHT) & (position >> 3 * HEIGHT);
 
 			return wm & (board_mask ^ mask);
+		}
+
+		BitBoard Board::possible_moves_mask() const {
+			return (position + bottom_mask) & board_mask;
 		}
 	}
 }

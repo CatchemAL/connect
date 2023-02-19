@@ -40,6 +40,7 @@ namespace connect {
 			void play_move(BitBoard move);
 			bool is_winning_move(col_t col) const;
 			BitBoard win_mask() const;
+			BitBoard possible_moves_mask() const;
 			bool is_won() const;
 
 		private:

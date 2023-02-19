@@ -56,7 +56,6 @@ namespace connect {
 			EXPECT_EQ(actual, expected);
 		}
 
-
 		INSTANTIATE_TEST_CASE_P(BoardTestSuite, WinMaskBoardTestSuite, testing::Values(
 			std::make_pair(std::vector<uint8_t>{3, 3, 4, 4, 5, 5 }, std::vector<uint8_t>{ 2 * H1, 6 * H1 }),
 			std::make_pair(std::vector<uint8_t>{3, 4, 3, 4, 3, 4   }, std::vector<uint8_t>{ 3 * H1 + 3}),

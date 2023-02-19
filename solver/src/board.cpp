@@ -60,11 +60,13 @@ namespace connect {
 			wm |= (position << (H1 + 1)) & (position << 2 * (H1 + 1)) & (position << 3 * (H1 + 1));
 			wm |= (position << (H1 + 1)) & (position << 2 * (H1 + 1)) & (position >>     (H1 + 1));
 			wm |= (position << (H1 + 1)) & (position >>     (H1 + 1)) & (position >> 2 * (H1 + 1));
+			wm |= (position >> (H1 + 1)) & (position >> 2 * (H1 + 1)) & (position >> 3 * (H1 + 1));
 			
 			// Diagonals _\_
 			wm |= (position >> (H1 - 1)) & (position >> 2 * (H1 - 1)) & (position >> 3 * (H1 - 1));
 			wm |= (position >> (H1 - 1)) & (position >> 2 * (H1 - 1)) & (position <<     (H1 - 1));
 			wm |= (position >> (H1 - 1)) & (position <<     (H1 - 1)) & (position << 2 * (H1 - 1));
+			wm |= (position << (H1 - 1)) & (position << 2 * (H1 - 1)) & (position << 3 * (H1 - 1));
 
 			return wm & (board_mask ^ mask);
 		}

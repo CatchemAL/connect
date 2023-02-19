@@ -27,6 +27,10 @@ namespace connect {
 			return true;
 		}
 
+		BitBoard Board::winning_mask(col_t col) const {
+			return BitBoard(1);
+		}
+
 		bool Board::is_won() const {
 
 			constexpr std::array<uint8_t, 4> directions = { HEIGHT, HEIGHT + 1, HEIGHT + 2, 1 };

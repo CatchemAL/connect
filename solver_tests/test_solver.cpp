@@ -63,6 +63,7 @@ TEST(TestSolver, Minimax3) {
 	EXPECT_EQ(expected, actual);
 }
 
+
 TEST(TestSolver, Minimax4) {
 
 	// Arrange
@@ -74,6 +75,27 @@ TEST(TestSolver, Minimax4) {
 		moves.push_back(move - '1');
 
 	int expected = 2;
+	Board board(moves);
+
+	// Act
+	auto actual = sut.minimax(board);
+
+	// Assert
+	EXPECT_EQ(expected, actual);
+}
+
+
+TEST(TestSolver, Minimax5) {
+
+	// Arrange
+	Solver sut;
+
+	std::string moves_str = "662166212444136762231357153";
+	std::vector<col_t> moves;
+	for (const char move : moves_str)
+		moves.push_back(move - '1');
+
+	int expected = 0;
 	Board board(moves);
 
 	// Act

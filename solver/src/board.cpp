@@ -27,10 +27,6 @@ namespace connect {
 			return true;
 		}
 
-		BitBoard Board::winning_mask(col_t col) const {
-			return BitBoard(1);
-		}
-
 		bool Board::is_won() const {
 
 			constexpr std::array<uint8_t, 4> directions = { HEIGHT, HEIGHT + 1, HEIGHT + 2, 1 };
@@ -45,10 +41,22 @@ namespace connect {
 			return false;
 		}
 
-		//   // return a bitmask containg a single 1 corresponding to the top cel of a given column
-		//   static constexpr position_t top_mask_col(int col) {
-		//   	return UINT64_C(1) << ((HEIGHT - 1) + col * (HEIGHT + 1));
-		//   }
+
+		BitBoard Board::win_mask() const {
+
+			// Vertical win
+			BitBoard wm = (position << 1) & (position << 2) & (position << 3);
+
+			// Horizontals
+			wm |= (position << (HEIGHT + 1)) & (position << 2 * (HEIGHT + 1)) & (position << 3 * (HEIGHT + 1));
+			wm |= (position >> (HEIGHT + 1)) & (position >> 2 * (HEIGHT + 1)) & (position >> 3 * (HEIGHT + 1));
+
+			// Diagonals
+			wm |= (position << (HEIGHT + 2)) & (position << 2 * (HEIGHT + 2)) & (position << 3 * (HEIGHT + 2));
+			wm |= (position >> HEIGHT) & (position >> 2 * HEIGHT) & (position >> 3 * HEIGHT);
+
+			return wm & board_mask;
+		}
 	}
 }
 

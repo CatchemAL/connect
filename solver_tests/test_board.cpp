@@ -156,3 +156,16 @@ TEST(TestBoard, IsGameWon) {
 	EXPECT_EQ(expected, actual);
 }
 
+
+TEST(TestBoard, WinMask) {
+
+	// Arrange
+	Board sut{ { 3, 3, 4, 4, 5, 5 } };
+	BitBoard expected{ Board{ {2, 6} }.mask };
+
+	// Act
+	BitBoard actual = sut.win_mask();
+
+	// Assert
+	EXPECT_EQ(expected, actual);
+}

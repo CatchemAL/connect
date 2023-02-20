@@ -28,6 +28,21 @@ namespace connect {
 
 				return 1;
 			}
+
+			template<col_t TWidth>
+			static constexpr std::array<col_t, TWidth> create_order() {
+				std::array<col_t, TWidth> order{};
+
+				for (size_t i = 0; i < TWidth; i++)
+				{
+					if (i & 1)
+						order[i] = (TWidth + i) / 2;
+					else
+						order[i] = (TWidth - i - 1) / 2;
+				}
+
+				return order;
+			}
 		};
 
 		/*

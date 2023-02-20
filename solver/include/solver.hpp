@@ -52,7 +52,7 @@ namespace connect {
 				if (max_possible_score <= alpha)
 					return max_possible_score;
 
-				for (col_t col = 0; col < Board::WIDTH; ++col)
+				for (col_t col : move_order_)
 				{
 					if (board.can_play_col(col)) // todo mask col with possible moves and fire that in instead
 					{
@@ -67,6 +67,9 @@ namespace connect {
 
 				return alpha;
 			}
+
+		private:
+			constexpr static std::array<col_t, Board::WIDTH> move_order_ = MaskUtils::create_order<Board::WIDTH>();
 		};
 	}
 }

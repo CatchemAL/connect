@@ -46,22 +46,26 @@ namespace connect {
 				if (win_mask & possible_moves)
 					return (Board::NUM_SLOTS - board.num_moves + 1) / 2;
 
-				int score = INT_MIN;
+				int max_possible_score = (Board::NUM_SLOTS - board.num_moves - 1) / 2;
+				if (beta > max_possible_score)
+					beta = max_possible_score;
+				if (max_possible_score <= alpha)
+					return max_possible_score;
+
 				for (col_t col = 0; col < Board::WIDTH; ++col)
 				{
 					if (board.can_play_col(col)) // todo mask col with possible moves and fire that in instead
 					{
 						Board b(board);
 						b.play_col(col);
-						int opponent_score = -minimax(b, -beta, -alpha);
-						score = std::max(score, opponent_score);
+						int score = -minimax(b, -beta, -alpha);
+						alpha = std::max(alpha, score);
 						if (score >= beta)
 							return score;
-						alpha = std::max(alpha, score);
 					}
 				}
 
-				return score;
+				return alpha;
 			}
 		};
 	}

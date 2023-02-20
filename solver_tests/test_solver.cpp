@@ -1,109 +1,43 @@
 #include "pch.h"
+
+#include "board.hpp"
 #include "solver.hpp"
 
-using namespace connect::solver;
+namespace connect {
+	namespace solver {
 
-TEST(TestSolver, Minimax1) {
+		using si = std::pair<std::string, int>;
 
-	// Arrange
-	Solver sut;
+		class SolverTestSuite : public ::testing::Test {};
+		class MinimaxSolverTestSuite : public ::testing::TestWithParam<si> {};
 
-	std::string moves_str = "37313333717124171162542";
-	std::vector<col_t> moves;
-	for (const char move : moves_str)
-		moves.push_back(move - '1');
+		TEST_P(MinimaxSolverTestSuite, MinimaxAlgorithm) {
 
-	int expected = 3;
-	Board board(moves);
+			// Arrange
+			Solver sut;
+			const auto& [moves_str, expected] = GetParam();
+			std::vector<col_t> moves;
+			for (const char move : moves_str)
+				moves.push_back(move - '1');
 
-	// Act
-	auto actual = sut.minimax(board, INT_MIN + 2, INT_MAX - 1);
+			Board board(moves);
 
-	// Assert
-	EXPECT_EQ(expected, actual);
+			// Act
+			auto actual = sut.minimax(board, INT_MIN + 2, INT_MAX - 1);
+
+			// Assert
+			EXPECT_EQ(expected, actual);
+		}
+
+		INSTANTIATE_TEST_CASE_P(SolverTestSuite, MinimaxSolverTestSuite, testing::Values(
+			std::make_pair("5273153636415176", 5),
+			std::make_pair("347436735144364224356", -3),
+			std::make_pair("173535161356514575166664377", 0),
+			std::make_pair("622131447544633632157215552", 1),
+			std::make_pair("12211221122137477577675665566556", 4),
+			std::make_pair("245436534133154164526212", -2),
+			std::make_pair("512766432311321547131", 2),
+			std::make_pair("662166212444136762231357153", 0)
+		));
+	}
 }
-
-TEST(TestSolver, Minimax2) {
-
-	// Arrange
-	Solver sut;
-
-	std::string moves_str = "12211221122137477577675665566556";
-	std::vector<col_t> moves;
-	for (const char move : moves_str)
-		moves.push_back(move - '1');
-
-	int expected = 4;
-	Board board(moves);
-
-	// Act
-	auto actual = sut.minimax(board, INT_MIN + 2, INT_MAX - 1);
-
-	// Assert
-	EXPECT_EQ(expected, actual);
-}
-
-TEST(TestSolver, Minimax3) {
-
-	// Arrange
-	Solver sut;
-
-	std::string moves_str = "245436534133154164526212";
-	std::vector<col_t> moves;
-	for (const char move : moves_str)
-		moves.push_back(move - '1');
-
-	int expected = -2;
-	Board board(moves);
-
-	// Act
-	auto actual = sut.minimax(board, INT_MIN + 2, INT_MAX - 1);
-
-	// Assert
-	EXPECT_EQ(expected, actual);
-}
-
-
-TEST(TestSolver, Minimax4) {
-
-	// Arrange
-	Solver sut;
-
-	std::string moves_str = "512766432311321547131";
-	std::vector<col_t> moves;
-	for (const char move : moves_str)
-		moves.push_back(move - '1');
-
-	int expected = 2;
-	Board board(moves);
-
-	// Act
-	auto actual = sut.minimax(board, INT_MIN + 2, INT_MAX - 1);
-
-	// Assert
-	EXPECT_EQ(expected, actual);
-}
-
-
-TEST(TestSolver, Minimax5) {
-
-	// Arrange
-	Solver sut;
-
-	std::string moves_str = "662166212444136762231357153";
-	std::vector<col_t> moves;
-	for (const char move : moves_str)
-		moves.push_back(move - '1');
-
-	int expected = 0;
-	Board board(moves);
-
-	// Act
-	auto actual = sut.minimax(board, INT_MIN+2, INT_MAX-1);
-
-	// Assert
-	EXPECT_EQ(expected, actual);
-}
-
-
-

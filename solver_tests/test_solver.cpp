@@ -17,7 +17,7 @@ TEST(TestSolver, Minimax1) {
 	Board board(moves);
 
 	// Act
-	auto actual = sut.minimax(board);
+	auto actual = sut.minimax(board, INT_MIN + 2, INT_MAX - 1);
 
 	// Assert
 	EXPECT_EQ(expected, actual);
@@ -37,7 +37,7 @@ TEST(TestSolver, Minimax2) {
 	Board board(moves);
 
 	// Act
-	auto actual = sut.minimax(board);
+	auto actual = sut.minimax(board, INT_MIN + 2, INT_MAX - 1);
 
 	// Assert
 	EXPECT_EQ(expected, actual);
@@ -57,7 +57,7 @@ TEST(TestSolver, Minimax3) {
 	Board board(moves);
 
 	// Act
-	auto actual = sut.minimax(board);
+	auto actual = sut.minimax(board, INT_MIN + 2, INT_MAX - 1);
 
 	// Assert
 	EXPECT_EQ(expected, actual);
@@ -78,7 +78,7 @@ TEST(TestSolver, Minimax4) {
 	Board board(moves);
 
 	// Act
-	auto actual = sut.minimax(board);
+	auto actual = sut.minimax(board, INT_MIN + 2, INT_MAX - 1);
 
 	// Assert
 	EXPECT_EQ(expected, actual);
@@ -99,7 +99,7 @@ TEST(TestSolver, Minimax5) {
 	Board board(moves);
 
 	// Act
-	auto actual = sut.minimax(board);
+	auto actual = sut.minimax(board, INT_MIN+2, INT_MAX-1);
 
 	// Assert
 	EXPECT_EQ(expected, actual);

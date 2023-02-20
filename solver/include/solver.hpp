@@ -12,7 +12,7 @@ namespace connect {
 		class Solver {
 		public:
 			
-			Solver() : table_(8388593) {}
+			Solver() : table_(8'388'593) {}
 
 
 			static int minimax(const Board& board) {

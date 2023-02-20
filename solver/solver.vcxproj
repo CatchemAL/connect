@@ -170,6 +170,7 @@
     <ClInclude Include="include\pch.h" />
     <ClInclude Include="include\mask_utils.hpp" />
     <ClInclude Include="include\solver.hpp" />
+    <ClInclude Include="include\transposition_table.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\board_view.cpp" />

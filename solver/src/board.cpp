@@ -41,6 +41,10 @@ namespace connect {
 			return false;
 		}
 
+		BitBoard Board::key() const {
+			return (mask + bottom_mask) | position;
+		}
+
 		BitBoard Board::win_mask() const {
 
 			constexpr col_t H1 = HEIGHT + 1;

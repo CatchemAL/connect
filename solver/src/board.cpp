@@ -71,6 +71,45 @@ namespace connect {
 			return wm & (board_mask ^ mask);
 		}
 
+		/*
+		BitBoard Board::win_mask() const {
+
+			constexpr col_t H1 = HEIGHT + 1;
+
+			// Vertical win
+			BitBoard wm = (position << 1) & (position << 2) & (position << 3);
+
+			BitBoard tmp;
+
+			// Horizontals
+			tmp = (position << H1) & (position << 2 * H1);
+			wm |= tmp & (position << 3 * H1);
+			wm |= tmp & (position >> H1);
+			
+			tmp = (position >> H1) & (position >> 2 * H1);
+			wm |= tmp & (position >> 3 * H1);
+			wm |= tmp & (position << H1);
+
+			// Diagonals _/_
+			tmp = (position << (H1 + 1)) & (position << 2 * (H1 + 1));
+			wm |= tmp & (position << 3 * (H1 + 1));
+			wm |= tmp & (position >> (H1 + 1));
+			tmp = (position >> (H1 + 1)) & (position >> 2 * (H1 + 1));
+			wm |= (position << (H1 + 1)) & tmp;
+			wm |= tmp & (position >> 3 * (H1 + 1));
+
+			// Diagonals _\_
+			tmp = (position >> (H1 - 1)) & (position >> 2 * (H1 - 1));
+			wm |= tmp & (position >> 3 * (H1 - 1));
+			wm |= tmp & (position << (H1 - 1));
+			tmp = (position << (H1 - 1)) & (position << 2 * (H1 - 1));
+			wm |= (position >> (H1 - 1)) & tmp;
+			wm |= tmp & (position << 3 * (H1 - 1));
+
+			return wm & (board_mask ^ mask);
+		}
+		*/
+
 		BitBoard Board::possible_moves_mask() const {
 			return (mask + bottom_mask) & board_mask;
 		}

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <bit>
 #include <cstdint>
 #include <vector>
 #include <iostream>
@@ -34,6 +35,12 @@ namespace connect {
 				: mask(mask), position(position)
 			{
 			}
+
+			static int popcount(BitBoard b) {
+				return std::popcount(b);
+			}
+
+
 
 			bool can_play_col(col_t col) const;
 			void play_col(col_t col);
